@@ -22,11 +22,14 @@ public class ConfirmController {
     @Resource
     private RabbitTemplate rabbitTemplate;
 
+    private static final String EXCHANGE = "confirm-exchange";
+    private static final String ROUTING_KEY = "confirm-key";
+
     @GetMapping("/sendConfirm/{msg}")
-    public void sendConfirmMessage(@PathVariable("msg")String msg){
+    public void sendConfirmMessage(@PathVariable("msg") String msg) {
         /**声明回调的形参*/
         CorrelationData correlationData = new CorrelationData("1");
-        rabbitTemplate.convertAndSend("confirm-exchange", "confirm-key", msg,correlationData);
+        rabbitTemplate.convertAndSend(EXCHANGE, ROUTING_KEY, msg, correlationData);
         log.info("发送信息为:" + msg);
     }
 }

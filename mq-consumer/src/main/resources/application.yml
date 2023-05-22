@@ -1,0 +1,8 @@
+spring:
+  rabbitmq:
+    host: 172.28.8.124
+    port: 35672
+    username: sophgo
+    password: Sophgo123
+    virtual-host: /
+  publisher-confirm-type: correlated
